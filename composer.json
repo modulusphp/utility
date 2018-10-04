@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "ModulusPHP\\Utility\\": ""
+      "Modulus\\Utility\\": ""
     }
   },
   "minimum-stability": "stable"
