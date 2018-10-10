@@ -15,7 +15,7 @@ class Command
    */
   public static function run(string $args) : SymfonyProcess
   {
-    $process = new SymfonyProcess('php ' . Accessor::$appRoot . 'modulus ' . $args);
+    $process = new SymfonyProcess('php ' . Accessor::$appRoot . 'craftsman ' . $args);
     $process->run();
 
     return $process;
@@ -29,7 +29,7 @@ class Command
    */
   public static function start(string $args) : SymfonyProcess
   {
-    $process = new SymfonyProcess('php ' . Accessor::$appRoot . 'modulus ' . $args);
+    $process = new SymfonyProcess('php ' . Accessor::$appRoot . 'craftsman ' . $args);
     $process->start();
 
     return $process;
@@ -43,7 +43,7 @@ class Command
    */
   public static function wait(string $args) : ?SymfonyProcess
   {
-    $process = new SymfonyProcess('php ' . Accessor::$appRoot . 'modulus ' . $args);
+    $process = new SymfonyProcess('php ' . Accessor::$appRoot . 'craftsman ' . $args);
 
     $process->start();
     $process->wait();
