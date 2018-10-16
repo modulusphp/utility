@@ -4,8 +4,8 @@ namespace Modulus\Utility;
 
 use Modulus\Directives\Csrf;
 use Modulus\Directives\Using;
-use App\Resolver\DirectivesResolver;
 use Modulus\Utility\GlobalVariables;
+use App\Resolvers\DirectivesResolver;
 use AtlantisPHP\Medusa\Template as Medusa;
 use Modulus\Directives\ConfigToJsonString;
 
