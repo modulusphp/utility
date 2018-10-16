@@ -4,9 +4,10 @@ namespace Modulus\Utility;
 
 use Modulus\Directives\Csrf;
 use Modulus\Directives\Using;
+use App\Resolver\DirectivesResolver;
 use Modulus\Utility\GlobalVariables;
-use Modulus\Directives\ConfigToJsonString;
 use AtlantisPHP\Medusa\Template as Medusa;
+use Modulus\Directives\ConfigToJsonString;
 
 class Accessor
 {
@@ -68,6 +69,12 @@ class Accessor
     $medusa->register(Using::class);
     $medusa->register(Csrf::class);
     $medusa->register(ConfigToJsonString::class);
+
+    if (class_exists(DirectivesResolver::class)) {
+      (new DirectivesResolver)->start([
+        'view' => $medusa
+      ]);
+    }
 
     self::$viewComponent = $medusa;
   }
