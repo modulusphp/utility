@@ -23,7 +23,14 @@ class Middleware
       }
     }
 
-    $middlwares = array_merge(HttpFoundation::$middlewareGroup[$group] ?? [], $all);
+    $first = isset(HttpFoundation::$middlewareGroup[$route->middleware[0]]) ? true : null;
+
+    if ($first) {
+      $middlwares = array_merge(HttpFoundation::$middlewareGroup[$route->middleware[0]] ?? [], $all);
+    } else {
+      $middlwares = $all;
+    }
+
     $middlwares = array_merge(HttpFoundation::$middleware, $middlwares);
 
     foreach($middlwares as $middleroute) {
