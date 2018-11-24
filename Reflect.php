@@ -33,14 +33,10 @@ class Reflect
    */
   public function handle($callback, $variables = [], $route) : array
   {
-    if (is_array($callback)) {
-      $reflection = new ReflectionMethod($callback[0], $callback[1]);
-    } else {
-      $reflection = new ReflectionFunction($callback);
-    }
+    $reflection = is_array($callback) ? new ReflectionMethod($callback[0], $callback[1]) : new ReflectionFunction($callback);
 
-    $params = $reflection->getParameters();
-    $variables = (new Reflect)->hasRequest($params, $variables);
+    $params     = $reflection->getParameters();
+    $variables  = (new Reflect)->hasRequest($params, $variables);
 
     return (new Reflect)->celebrate($params, $variables, $route);
   }

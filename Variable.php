@@ -30,6 +30,6 @@ class Variable
    */
   public static function get(string $name)
   {
-    return Variable::$data[$name];
+    return Variable::has($name) ? Variable::$data[$name] : null;
   }
 }
