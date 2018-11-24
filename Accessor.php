@@ -4,6 +4,7 @@ namespace Modulus\Utility;
 
 use Modulus\Directives\Csrf;
 use Modulus\Directives\Using;
+use Modulus\Directives\Partial;
 use Modulus\Utility\GlobalVariables;
 use App\Resolvers\DirectivesResolver;
 use AtlantisPHP\Medusa\Template as Medusa;
@@ -66,6 +67,7 @@ class Accessor
     $medusa->setViewsDirectory(self::$viewsDirectory);
     $medusa->setViewsExtension(self::$viewsExtension);
 
+    $medusa->register(Partial::class);
     $medusa->register(Using::class);
     $medusa->register(Csrf::class);
     $medusa->register(ConfigToJsonString::class);
