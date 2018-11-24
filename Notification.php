@@ -5,6 +5,34 @@ namespace Modulus\Utility;
 class Notification
 {
   /**
+   * $notification
+   *
+   * @var Notification
+   */
+  protected $notification;
+
+  /**
+   * __construct
+   *
+   * @param Notification $notification
+   * @return void
+   */
+  public function __construct(Notification $notification)
+  {
+    $this->notification = $notification;
+  }
+
+  /**
+   * Send notification now
+   *
+   * @return mixed
+   */
+  public function now()
+  {
+    return Notification::make($this->notification);
+  }
+
+  /**
    * Make a new notification and send it
    *
    * @param Notification $notification

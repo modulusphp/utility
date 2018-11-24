@@ -18,12 +18,14 @@ class Middleware
   public static function run($request, object $route, string $group, array $all = [])
   {
     foreach ($route->middleware as $value) {
-      if (isset(HttpFoundation::$routeMiddleware[$value])) {
-        $all[] = HttpFoundation::$routeMiddleware[$value];
+      if (isset(HttpFoundation::$routeMiddleware[explode(':', $value)[0]]) || class_exists($value)) {
+        $all[] = $value;
       }
     }
 
-    $first = isset(HttpFoundation::$middlewareGroup[$route->middleware[0]]) ? true : null;
+    $first = isset(HttpFoundation::$middlewareGroup[
+      isset($route->middleware[0]) ? $route->middleware[0] : null
+    ]) ? true : null;
 
     if ($first) {
       $middlwares = array_merge(HttpFoundation::$middlewareGroup[$route->middleware[0]] ?? [], $all);
@@ -34,7 +36,19 @@ class Middleware
     $middlwares = array_merge(HttpFoundation::$middleware, $middlwares);
 
     foreach($middlwares as $middleroute) {
-      if ((new $middleroute)->handle($request, true) == false) {
+      $attributes = [];
+
+      if (isset(HttpFoundation::$routeMiddleware[explode(':', $middleroute)[0]])) {
+        $route = explode(':', $middleroute);
+
+        if (count($route) > 1) {
+          $attributes = explode(',', explode(':', $middleroute)[1]);
+        }
+
+        $middleroute = HttpFoundation::$routeMiddleware[explode(':', $middleroute)[0]];
+      }
+
+      if ((new $middleroute)->handle($request, true, $attributes) == false) {
         exit;
       }
     }
