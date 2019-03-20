@@ -7,6 +7,15 @@ use JeffOchoa\ValidatorFactory;
 
 class Validate
 {
+  /**
+   * Make a new validator
+   *
+   * @param array $data
+   * @param array $rules
+   * @param mixed $unknown
+   * @param mixed $custom
+   * @return mixed
+   */
   public static function make(array $data, array $rules, $unknown = null, $custom = [])
   {
     $factory = new ValidatorFactory();
