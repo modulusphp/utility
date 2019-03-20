@@ -2,8 +2,12 @@
 
 namespace Modulus\Utility;
 
+use Modulus\Support\Extendable;
+
 class Variable
 {
+  use Extendable;
+
   /**
    * All variables
    *
@@ -19,6 +23,11 @@ class Variable
    */
   public static function has(string $name) : bool
   {
+    if (isset($_SESSION['application']['with'][$name])) {
+      $_SESSION['application']['flash']['used'] = true;
+      return true;
+    }
+
     return isset(Variable::$data[$name]) ? true : false;
   }
 
@@ -30,6 +39,11 @@ class Variable
    */
   public static function get(string $name)
   {
+    if (isset($_SESSION['application']['with'][$name])) {
+      $_SESSION['application']['flash']['used'] = true;
+      return $_SESSION['application']['with'][$name];
+    }
+
     return Variable::has($name) ? Variable::$data[$name] : null;
   }
 }
