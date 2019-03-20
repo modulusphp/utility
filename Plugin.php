@@ -2,6 +2,8 @@
 
 namespace Modulus\Utility;
 
+use Modulus\Support\Filesystem;
+
 class Plugin
 {
   /**
@@ -65,7 +67,7 @@ class Plugin
    */
   public static function boot($app)
   {
-
+    //
   }
 
   /**
@@ -76,7 +78,9 @@ class Plugin
    */
   public static function console($app)
   {
-    $app->craftsman->load(Self::$dir . DIRECTORY_SEPARATOR . 'Commands');
+    if (Filesystem::isDirectory(Self::$dir . DIRECTORY_SEPARATOR . 'Commands')) {
+      $app->craftsman->load(Self::$dir . DIRECTORY_SEPARATOR . 'Commands');
+    }
   }
 
   /**
@@ -102,8 +106,17 @@ class Plugin
 
     $root = $app->config['app']['dir'];
 
+    $views          = $dir . DIRECTORY_SEPARATOR . '..' .DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
+    $viewsDirectory = $dir . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR;
+
+    if (Filesystem::isDirectory($views)) {
+      $views = $views;
+    } else if ($viewsDirectory) {
+      $views = $viewsDirectory;
+    }
+
     $medusa->setCacheDirectory($root . $app->config['view']['compiled']);
-    $medusa->setViewsDirectory($dir . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
+    $medusa->setViewsDirectory($views);
     $medusa->setViewsExtension($app->config['view']['extension']);
 
     Self::$view = $medusa;
