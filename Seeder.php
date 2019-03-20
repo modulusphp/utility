@@ -4,10 +4,13 @@ namespace Modulus\Utility;
 
 use Faker\Factory;
 use Faker\Generator;
+use Modulus\Support\Extendable;
 use Symfony\Component\Console\Helper\ProgressBar;
 
 class Seeder
 {
+  use Extendable;
+
   /**
    * $count
    *
@@ -19,9 +22,10 @@ class Seeder
    * seed
    *
    * @param Generator $faker
+   * @param int|null $index
    * @return void
    */
-  protected function seed(Generator $faker)
+  protected function seed(Generator $faker, ?int $index = null)
   {
     //
   }
@@ -33,9 +37,9 @@ class Seeder
    */
   public function run(ProgressBar $progressBar)
   {
-    for ($i=0; $i < $this->count; $i++) {
+    for ($i = 0; $i < $this->count; $i++) {
       $progressBar->advance();
-      $this->seed(Factory::create());
+      $this->seed(Factory::create(), $i);
     }
 
     $progressBar->finish();
