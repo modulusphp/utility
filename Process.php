@@ -2,10 +2,13 @@
 
 namespace Modulus\Utility;
 
+use Modulus\Support\Extendable;
 use Symfony\Component\Process\Process as SymfonyProcess;
 
 class Process
 {
+  use Extendable;
+
   /**
    * Execute process
    *

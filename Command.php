@@ -3,10 +3,13 @@
 namespace Modulus\Utility;
 
 use Modulus\Utility\Accessor;
+use Modulus\Support\Extendable;
 use Symfony\Component\Process\Process as SymfonyProcess;
 
 class Command
 {
+  use Extendable;
+
   /**
    * Run command
    *

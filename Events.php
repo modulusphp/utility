@@ -2,8 +2,12 @@
 
 namespace Modulus\Utility;
 
+use Modulus\Support\Extendable;
+
 class Events
 {
+  use Extendable;
+
   /**
    * $events
    *

@@ -3,10 +3,13 @@
 namespace Modulus\Utility;
 
 use ReflectionClass;
+use Modulus\Support\Extendable;
 use Illuminate\Database\Eloquent\Collection;
 
 class Groupable
 {
+  use Extendable;
+
   /**
    * $model
    *
