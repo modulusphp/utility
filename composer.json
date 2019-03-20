@@ -1,7 +1,7 @@
 {
   "name": "modulusphp/utility",
   "description": "Utility component for modulusPHP",
-  "version": "1.9.3.1",
+  "version": "1.9.3.2",
   "license": "MIT",
   "type": "package",
   "authors": [{
@@ -13,6 +13,7 @@
     "atlantisphp/medusa": "^1.1.0",
     "symfony/process": "^4.1",
     "modulusphp/http": "1.9.*",
+    "modulusphp/support": "1.9.*",
     "jeffochoa/validator-factory": "^1.0",
     "phpmailer/phpmailer": "^6.0"
   },
