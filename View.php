@@ -3,9 +3,12 @@
 namespace Modulus\Utility;
 
 use Modulus\Utility\Accessor;
+use Modulus\Support\Extendable;
 
 class View
 {
+  use Extendable;
+
   /**
    * Make a view
    *

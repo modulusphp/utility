@@ -3,11 +3,14 @@
 namespace Modulus\Utility;
 
 use Modulus\Http\CSRF;
-use JeffOchoa\ValidatorFactory;
 use Modulus\Utility\Variable;
+use JeffOchoa\ValidatorFactory;
+use Modulus\Support\Extendable;
 
 class GlobalVariables
 {
+  use Extendable;
+
   /**
    * Get global variables
    *

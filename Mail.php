@@ -2,11 +2,14 @@
 
 namespace Modulus\Utility;
 
+use Modulus\Support\Extendable;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
 class Mail
 {
+  use Extendable;
+
   /**
    * $subject
    *
@@ -343,6 +346,7 @@ class Mail
     $mail->SMTPDebug = 0;
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = $this->connection['encryption'];
+    $mail->SMTPKeepAlive = true;
     $mail->Host = $this->connection['host'];
     $mail->Port = $this->connection['port'];
     $mail->IsHTML(true);

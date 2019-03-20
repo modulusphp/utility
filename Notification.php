@@ -2,8 +2,12 @@
 
 namespace Modulus\Utility;
 
+use Modulus\Support\Extendable;
+
 class Notification
 {
+  use Extendable;
+
   /**
    * $notification
    *

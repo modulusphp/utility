@@ -2,8 +2,12 @@
 
 namespace Modulus\Utility;
 
+use Modulus\Support\Extendable;
+
 class Event
 {
+  use Extendable;
+
   /**
    * persist event
    *
