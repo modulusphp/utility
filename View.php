@@ -10,6 +10,13 @@ class View
   use Extendable;
 
   /**
+   * The compiled view
+   *
+   * @var string
+   */
+  public $compiled;
+
+  /**
    * Make a view
    *
    * @param  string $path
@@ -20,6 +27,16 @@ class View
   {
     $path = self::getPath($path);
     return Accessor::view($path, $data, $return);
+  }
+
+  /**
+   * Render a new view
+   *
+   * @return string
+   */
+  public function render()
+  {
+    echo $this->compiled;
   }
 
   /**
