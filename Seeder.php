@@ -12,11 +12,18 @@ class Seeder
   use Extendable;
 
   /**
-   * $count
+   * Default count
    *
-   * @var integer
+   * @var int
    */
-  public $count = 10;
+  public $count  = 10;
+
+  /**
+   * Default locale
+   *
+   * @var string
+   */
+  public $locale = null;
 
   /**
    * seed
@@ -37,14 +44,36 @@ class Seeder
    */
   public function run(ProgressBar $progressBar)
   {
+    $faker = Factory::create($this->getLocale());
+
     for ($i = 0; $i < $this->count; $i++) {
       $progressBar->advance();
-      $this->seed(Factory::create(), $i);
+      $this->seed($faker, $i);
     }
 
     $progressBar->finish();
     echo PHP_EOL;
 
     return true;
+  }
+
+  /**
+   * Get default locale
+   *
+   * @return string
+   */
+  private function getLocale() : string
+  {
+    $locale = ($this->locale ?? config('faker.locale.default'));
+
+    if (
+      $locale !== null &&
+      is_array(config('faker.locale.supported')) &&
+      in_array(config('faker.locale.default'), config('faker.locale.supported'))
+    ) {
+      return $locale;
+    }
+
+    return 'en_US';
   }
 }
