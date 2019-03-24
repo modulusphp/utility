@@ -93,6 +93,10 @@ class Accessor
 
     if ($return) return self::$viewComponent->make($path, $data);
 
-    return self::$viewComponent->view($path, $data);
+    $view = new View;
+
+    $view->compiled = self::$viewComponent->make($path, $data);
+
+    return $view;
   }
 }
