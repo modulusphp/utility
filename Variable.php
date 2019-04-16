@@ -19,16 +19,20 @@ class Variable
    * Check if variables exists
    *
    * @param string $name
-   * @return bool
+   * @param null|string $syntax
+   * @return mixed
    */
-  public static function has(string $name) : bool
+  public static function has(string $name, ?string $syntax = null)
   {
     if (isset($_SESSION['application']['with'][$name])) {
       $_SESSION['application']['flash']['used'] = true;
-      return true;
+
+      $name = $_SESSION['application']['with'][$name];
+
+      return $syntax ? str_replace(':message', $name, $syntax) : true;
     }
 
-    return isset(Variable::$data[$name]) ? true : false;
+    return isset(Variable::$data[$name]) ? ($syntax ? str_replace(':message', Variable::$data[$name], $syntax) : true) : false;
   }
 
   /**
