@@ -71,6 +71,17 @@ class Plugin
   }
 
   /**
+   * Handle on Exit event
+   *
+   * @param mixed $app
+   * @return bool
+   */
+  public static function exit($app) : bool
+  {
+    return false;
+  }
+
+  /**
    * Configure console
    *
    * @param mixed $app
