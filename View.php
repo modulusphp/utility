@@ -19,14 +19,40 @@ class View
   /**
    * Make a view
    *
-   * @param  string $path
-   * @param  array  $data
-   * @return void
+   * @param string $path
+   * @param array  $data
+   * @param bool $return
+   * @return mixed
    */
   public static function make(string $path, array $data = [], bool $return = false)
   {
     $path = self::getPath($path);
+
+    /**
+     * Render error page if this is a whoops call
+     */
+    if (self::isCalledByWhoops()) {
+      return Accessor::view($path, $data, $return)->render();
+    }
+
     return Accessor::view($path, $data, $return);
+  }
+
+  /**
+   * Check if this is an exception
+   *
+   * @return bool
+   */
+  public static function isCalledByWhoops() : bool
+  {
+    /**
+     * Get trace
+     */
+    $trace = debug_backtrace();
+
+    $trace = end($trace);
+
+    return isset($trace['class']) && $trace['class'] == 'Whoops\Run';
   }
 
   /**
