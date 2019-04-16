@@ -84,8 +84,9 @@ class Accessor
   /**
    * Make a view
    *
-   * @param  string $path
-   * @param  array  $data
+   * @param string $path
+   * @param array $data
+   * @return View
    */
   public static function view(string $path, array $data = [], bool $return = false)
   {
