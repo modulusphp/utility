@@ -10,7 +10,7 @@
   }],
   "require": {
     "modulusphp/directives": "1.9.*",
-    "atlantisphp/medusa": "^1.1.0",
+    "atlantisphp/medusa": "^1.1.*",
     "symfony/process": "^4.1",
     "modulusphp/http": "1.9.*",
     "modulusphp/support": "1.9.*",
