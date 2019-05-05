@@ -42,6 +42,16 @@ class Plugin
   public static $variables;
 
   /**
+   * Runs before the extension is loaded
+   *
+   * @return bool
+   */
+  public function onload() : bool
+  {
+    return true;
+  }
+
+  /**
    * Configure plugin
    *
    * @param mixed $app
