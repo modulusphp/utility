@@ -181,15 +181,16 @@ class Mail
    *
    * @param string $message
    * @param string $link
+   * @param string $align
    * @param string $class
    * @return Mail
    */
-  public function action(string $message, string $link, string $class = 'btn btn-primary') : Mail
+  public function action(string $message, string $link, string $align = 'left', string $class = 'btn btn-primary') : Mail
   {
     $this->body .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"{$class}\">
 <tbody>
   <tr>
-    <td align=\"left\">
+    <td align=\"{$align}\">
       <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
         <tbody>
           <tr>
