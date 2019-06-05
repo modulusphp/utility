@@ -9,6 +9,9 @@ use Modulus\Utility\GlobalVariables;
 use App\Resolvers\DirectivesResolver;
 use AtlantisPHP\Medusa\Template as Medusa;
 use Modulus\Directives\ConfigToJsonString;
+use Modulus\Hibernate\Mail\Directives\EmailView;
+use Modulus\Hibernate\Mail\Directives\EmailAction;
+use Modulus\Hibernate\Mail\Directives\EmailFooter;
 
 class Accessor
 {
@@ -68,6 +71,9 @@ class Accessor
     $medusa->setViewsExtension(self::$viewsExtension);
 
     $medusa->register(Partial::class);
+    $medusa->register(EmailView::class);
+    $medusa->register(EmailAction::class);
+    $medusa->register(EmailFooter::class);
     $medusa->register(Using::class);
     $medusa->register(Csrf::class);
     $medusa->register(ConfigToJsonString::class);
