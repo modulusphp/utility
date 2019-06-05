@@ -10,6 +10,7 @@
   }],
   "require": {
     "modulusphp/directives": "1.9.*",
+    "modulusphp/hibernate": "1.9.*",
     "atlantisphp/medusa": "1.1.*",
     "symfony/process": "^4.1",
     "modulusphp/http": "1.9.*",
