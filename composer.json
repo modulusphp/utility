@@ -23,7 +23,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Modulus\\Utility\\": ""
+      "Modulus\\Utility\\": "src/"
     }
   },
   "minimum-stability": "stable"
