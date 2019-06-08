@@ -1,7 +1,7 @@
 {
   "name": "modulusphp/utility",
   "description": "Utility component for Modulus",
-  "version": "1.9.4.4",
+  "version": "1.9.4.5",
   "license": "MIT",
   "type": "package",
   "authors": [{
@@ -23,7 +23,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Modulus\\Utility\\": ""
+      "Modulus\\Utility\\": "src/"
     }
   },
   "minimum-stability": "stable"

@@ -5,10 +5,10 @@ namespace Modulus\Utility;
 use ReflectionMethod;
 use ReflectionFunction;
 
-use Modulus\Http\Request;
+use Modulus\Http\Request\Base;
 use Modulus\Utility\Groupable;
-use Modulus\Framework\Mocks\RouteBinding;
 
+use Modulus\Framework\Mocks\RouteBinding;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 
@@ -20,7 +20,7 @@ class Reflect
   /**
    * $request
    *
-   * @var \Request
+   * @var \Modulus\Http\Request\Base
    */
   public static $request;
 
@@ -62,9 +62,8 @@ class Reflect
 
       if (class_exists($class)) {
         $instance = new $class();
-        if ($instance instanceof Request) {
-          $data = array_merge($_POST, $_FILES);
-          $request = new $class($data);
+        if ($instance instanceof Base) {
+          $request = new $class();
 
           $args[$where] = $request;
 
@@ -129,7 +128,7 @@ class Reflect
   {
     foreach($params as $key => $param) {
       $class = '\\' . $param->getType();
-      if (class_exists($class) && new $class() instanceof Request) {
+      if (class_exists($class) && new $class() instanceof Base) {
         $i = $key;
       }
     }
